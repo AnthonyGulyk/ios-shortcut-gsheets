@@ -1,0 +1,17 @@
+var financesheet = SpreadsheetApp.openById("10NPdHBp2zJywtiTkFQ71Qn86IiSXqzw6Gm3-DQoKibs").getSheetByName('Sheet1');
+
+
+function doGet(e) {
+  
+  var amount = JSON.parse(e.parameters.amount)
+  var account = JSON.parse(e.parameters.account)
+  var category = JSON.parse(e.parameters.category)
+  var detail = JSON.parse(e.parameters.detail)
+
+
+  var formattedTime = Utilities.formatDate(new Date(), "GMT-3", "h:mm a");
+  var formattedDate = Utilities.formatDate(new Date(), "GMT-3", "MM/dd/yyyy");
+
+ financesheet.appendRow([formattedDate,+amount,account,category,detail]);
+ 
+}
