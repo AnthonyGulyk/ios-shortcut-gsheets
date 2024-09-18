@@ -1,0 +1,21 @@
+var financesheet = SpreadsheetApp.openById("1XPuJ1_90yzqQ-s638U03qYKEm8sp35gAFBKgQs1x6cs").getSheetByName('Sheet1');
+
+function doGet(e) {
+    var habit1 = e.parameter.habit1;  // This should be the data to add
+
+    // Hardcode the date to September 17th
+    var date = new Date();  // Change this to September 17th
+    var dayOfMonth = date.getDate();  // Get the day of the month from the hardcoded date
+
+    // Log for debugging
+    Logger.log("Received habit1: " + habit1);
+    Logger.log("Day of Month: " + dayOfMonth);
+
+    // Assuming habits start in row 2
+    var habitRow = 2; // Adjust if your habits start in a different row
+
+    // Append the habit data to the cell in the correct column for September 17th
+    financesheet.getRange(habitRow, dayOfMonth + 1).setValue(habit1);  // +1 to skip the blank cell in A1
+
+    return ContentService.createTextOutput("Success" + date);
+}
